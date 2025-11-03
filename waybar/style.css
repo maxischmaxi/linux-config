@@ -1,0 +1,147 @@
+/* 全局设置 - Tokyonight Theme */
+* {
+  font-family: "CaskaydiaCove Nerd Font", monospace;
+  font-weight: bold;
+  font-size: 13px; /* Reduziert von 16px auf 13px */
+  color: #c0caf5; /* Tokyonight Vordergrund */
+}
+
+/* 透明 Waybar 背景 */
+#waybar {
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  box-shadow: none;
+}
+
+/* 所有模块统一风格 */
+#workspaces {
+  /*background-color: rgba(29,31,46, 0.95);*/
+  background-color: #1a1b26; /*rgba(15, 27, 53, 0.9);*/
+  padding: 1px 8px; /* Mehr horizontales Padding für Workspace-Buttons */
+  margin-top: 2px;
+  margin-left: 6px;
+  margin-right: 6px;
+  border-radius: 10px;
+  border-width: 0px;
+}
+
+#window,
+#tray {
+  background-color: #1a1b26;
+  padding: 1px 6px;
+  margin-top: 2px;
+  margin-left: 6px;
+  margin-right: 6px;
+  border-radius: 10px;
+  border-width: 0px;
+}
+
+#clock,
+#custom-power {
+  background-color: #1a1b26; /*rgba(15, 27, 53, 0.9);*/
+  margin-top: 2px; /* Reduziert auf 2px */
+  margin-right: 6px;
+  /*margin-bottom: 4px;*/
+  padding: 1px 2px; /* Reduziert auf 1px */
+  border-radius: 0 10px 10px 0;
+  border-width: 0px;
+}
+
+#network,
+#custom-lock {
+  background-color: #1a1b26; /*rgba(15, 27, 53, 0.9);*/
+  margin-top: 2px; /* Reduziert auf 2px */
+  margin-left: 6px;
+  /*margin-bottom: 4px;*/
+  padding: 1px 2px; /* Reduziert auf 1px */
+  border-radius: 10px 0 0 10px;
+  border-width: 0px;
+}
+
+#custom-reboot,
+#bluetooth,
+#battery,
+#pulseaudio,
+#backlight,
+#custom-temperature,
+#memory,
+#custom-cpu,
+#custom-gpu {
+  background-color: #1a1b26; /*rgba(15, 27, 53, 0.9);*/
+  margin-top: 2px; /* Reduziert auf 2px */
+  /*margin-bottom: 4px;*/
+  padding: 1px 2px; /* Reduziert auf 1px */
+  border-width: 0px;
+}
+
+#custom-cpu {
+  padding: 1px 4px 1px 2px;
+}
+
+/* Notifications Glocke mit besserem Padding */
+#custom-notifications {
+  background-color: #1a1b26;
+  margin-top: 2px; /* Reduziert auf 2px */
+  padding: 1px 8px 1px 10px; /* Reduziert auf 1px */
+  border-radius: 10px 0 0 10px;
+  border-width: 0px;
+}
+
+#custpm-temperature.critical,
+#pulseaudio.muted {
+  color: #f7768e; /* Tokyonight Rot */
+  padding-top: 0;
+}
+
+/* 鼠标悬停变亮一点 - Tokyonight Hover */
+#bluetooth:hover,
+#network:hover,
+/*#tray:hover,*/
+#backlight:hover,
+#battery:hover,
+#pulseaudio:hover,
+#custom-temperature:hover,
+#memory:hover,
+#custom-cpu:hover,
+#custom-gpu:hover,
+#custom-notifications:hover,
+#clock:hover,
+#custom-lock:hover,
+#custom-reboot:hover,
+#custom-power:hover,
+/*#workspaces:hover,*/
+#window:hover {
+  background-color: #24283b; /* Tokyonight dunklerer Akzent */
+}
+
+/* 工作区激活状态高亮 - Tokyonight */
+#workspaces button:hover {
+  background-color: rgba(122, 162, 247, 0.2); /* Tokyonight Blau transparent */
+  padding: 4px 10px; /* Mehr Padding für besseren Abstand */
+  margin: 0 2px;
+  border-radius: 10px;
+}
+
+#workspaces button.active {
+  background-color: #7aa2f7; /* Tokyonight Blau */
+  color: #1a1b26; /* Dunkler Text für besseren Kontrast */
+  padding: 2px 10px; /* Mehr Padding für besseren Abstand */
+  margin: 0 2px;
+  border-radius: 10px;
+}
+
+/* 未激活工作区按钮 */
+#workspaces button {
+  background: transparent;
+  border: none;
+  color: #565f89; /* Tokyonight Kommentar-Farbe */
+  padding: 0px 6px; /* Mehr Padding für besseren Abstand */
+  margin: 0 2px;
+  font-weight: bold;
+  font-size: 11px;
+}
+
+#window {
+  font-weight: 500;
+  font-style: italic;
+}

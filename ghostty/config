@@ -1,0 +1,45 @@
+# Font
+freetype-load-flags            = no-hinting
+freetype-load-flags            = no-force-autohint
+font-feature                   = calt
+font-feature                   = dlig
+font-feature                   = ss05
+font-thicken                   = true
+font-size                      = 11
+font-family                    = FiraCode Nerd Font
+window-inherit-font-size       = true
+
+# Window
+window-padding-balance         = false
+window-decoration              = false
+background-blur                = false
+background-opacity             = 1
+# window-padding-x               = 10
+# window-padding-y               = 10
+window-vsync                   = false
+window-theme                   = system
+copy-on-select                 = true
+macos-auto-secure-input        = true
+macos-secure-input-indication  = true
+shell-integration-features     = no-cursor,sudo,title
+
+# Update
+auto-update=download
+
+# Look and feel
+adjust-cursor-thickness        = 1
+adjust-underline-position      = 3
+bold-is-bright                 = true
+link-url                       = true
+macos-titlebar-proxy-icon      = hidden
+macos-titlebar-style           = tabs
+mouse-hide-while-typing        = true
+theme                          = TokyoNight Night
+window-vsync                   = true
+
+# Keybind
+keybind                        = super+t=ignore
+keybind                        = super+w=ignore
+keybind                        = super+d=ignore
+keybind                        = ctrl+c=text:\x03
+keybind = ctrl+v=paste_from_clipboard

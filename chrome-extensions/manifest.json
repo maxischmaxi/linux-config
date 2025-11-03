@@ -1,0 +1,50 @@
+{
+  "name": "Tab Mover",
+  "version": "1.0",
+  "manifest_version": 3,
+  "description": "Moves Tabs with Shortcuts",
+  "permissions": ["tabs"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://*/*"],
+      "css": ["global.css"]
+    },
+    {
+      "matches": ["*://www.chess.com/*", "*://chess.com/*"],
+      "css": ["chess.css"]
+    }
+  ],
+  "commands": {
+    "move_tab_left": {
+      "suggested_key": {
+        "mac": "MacCtrl+Command+P",
+        "linux": "Ctrl+Shift+P"
+      },
+      "description": "Move tab left"
+    },
+    "move_tab_right": {
+      "suggested_key": {
+        "mac": "MacCtrl+Command+N",
+        "linux": "Ctrl+Shift+N"
+      },
+      "description": "Move tab right"
+    },
+    "focus_tab_left": {
+      "suggested_key": {
+        "mac": "MacCtrl+P",
+        "linux": "Ctrl+Left"
+      },
+      "description": "Focus tab left"
+    },
+    "focus_tab_right": {
+      "suggested_key": {
+        "mac": "MacCtrl+N",
+        "linux": "Ctrl+Right"
+      },
+      "description": "Focus tab right"
+    }
+  }
+}
