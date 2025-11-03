@@ -59,6 +59,7 @@ vim.pack.add({
 	{ src = "https://github.com/saghen/blink.cmp", version = "v1.7.0" },
 	"https://github.com/nvim-tree/nvim-web-devicons",
 	"https://github.com/nvim-lualine/lualine.nvim",
+	"https://github.com/lewis6991/gitsigns.nvim",
 })
 
 local hooks = function(ev)
@@ -159,6 +160,8 @@ set("n", "∆", "<cmd>cprev<CR>zz", { desc = "Go to previous quickfix item" })
 set("n", "<leader>+", ':exe "vertical resize " . (winwidth(0) * 4/1)<CR>', { silent = true })
 set("n", "<leader>-", ':exe "vertical resize " . (winwidth(0) * 1/4)<CR>', { silent = true })
 set("n", "<C-b>", "<CMD>Oil<CR>", { desc = "Open Oil" })
+
+require("gitsigns").setup()
 
 require("nvim-highlight-colors").setup()
 

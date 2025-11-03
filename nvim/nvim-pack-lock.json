@@ -33,6 +33,10 @@
       "rev": "c106c94",
       "src": "https://github.com/projekt0n/github-nvim-theme"
     },
+    "gitsigns.nvim": {
+      "rev": "20ad441",
+      "src": "https://github.com/lewis6991/gitsigns.nvim"
+    },
     "lazydev.nvim": {
       "rev": "c2dfe35",
       "src": "https://github.com/folke/lazydev.nvim"

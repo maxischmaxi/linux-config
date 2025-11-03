@@ -16,6 +16,11 @@ if [[ "$(uname)" == "Darwin" ]]; then
   # pnpm end
 else
   export GOROOT="/usr/lib/go"
+  export PNPM_HOME="$HOME/.local/share/pnpm"
+  case ":$PATH:" in
+        *":$PNPM_HOME:"*) ;;
+        *) export PATH="$PNPM_HOME:$PATH" ;;
+  esac
 fi
 
 export GOPRIVATE=github.com/maxischmaxi/*
