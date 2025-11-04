@@ -37,6 +37,7 @@ export PATH="$PATH:$HOME/.local/bin"
 
 export ENV=development
 export ESLINT_USE_FLAT_CONFIG=false
+export EDITOR="nvim"
 
 export DYLD_LIBRARY_PATH="/usr/local/lib:$DYLD_LIBRARY_PATH"
 

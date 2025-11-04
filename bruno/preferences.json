@@ -1,0 +1,83 @@
+{
+	"window-bounds": {
+		"x": 2372,
+		"y": 44,
+		"width": 904,
+		"height": 1384
+	},
+	"lastOpenedCollections": [
+		"/home/max/Dokumente/Sample API Collection"
+	],
+	"preferences": {
+		"general": {
+			"defaultCollectionLocation": ""
+		},
+		"onboarding": {
+			"hasLaunchedBefore": true
+		},
+		"beta": {
+			"nodevm": false
+		},
+		"layout": {
+			"responsePaneOrientation": "horizontal"
+		},
+		"autoupdate": {
+			"downloadUpdates": true
+		},
+		"secretsProviders": [],
+		"license": {
+			"proxy": {
+				"auth": {}
+			}
+		},
+		"features": {
+			"terminal": true,
+			"apiSpec": false,
+			"fileExplorer": true,
+			"git": true,
+			"brunoJson": false
+		},
+		"proxy": {
+			"mode": "off",
+			"protocol": "http",
+			"hostname": "",
+			"port": null,
+			"auth": {
+				"enabled": false,
+				"username": "",
+				"password": ""
+			},
+			"bypassProxy": ""
+		},
+		"font": {
+			"codeFont": "default",
+			"codeFontSize": 14
+		},
+		"request": {
+			"sslVerification": false,
+			"customCaCertificate": {
+				"enabled": false,
+				"filePath": null
+			},
+			"keepDefaultCaCertificates": {
+				"enabled": true
+			},
+			"storeCookies": true,
+			"sendCookies": true,
+			"timeout": 0
+		},
+		"awsConfig": {
+			"enabled": false,
+			"accessKeyId": "",
+			"secretAccessKey": "",
+			"region": "",
+			"sessionToken": ""
+		},
+		"azureConfig": {
+			"enabled": false,
+			"tenantId": "",
+			"clientId": "",
+			"clientSecret": ""
+		}
+	}
+}

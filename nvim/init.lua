@@ -60,6 +60,7 @@ vim.pack.add({
 	"https://github.com/nvim-tree/nvim-web-devicons",
 	"https://github.com/nvim-lualine/lualine.nvim",
 	"https://github.com/lewis6991/gitsigns.nvim",
+	"https://github.com/sphamba/smear-cursor.nvim",
 })
 
 local hooks = function(ev)
@@ -160,6 +161,9 @@ set("n", "∆", "<cmd>cprev<CR>zz", { desc = "Go to previous quickfix item" })
 set("n", "<leader>+", ':exe "vertical resize " . (winwidth(0) * 4/1)<CR>', { silent = true })
 set("n", "<leader>-", ':exe "vertical resize " . (winwidth(0) * 1/4)<CR>', { silent = true })
 set("n", "<C-b>", "<CMD>Oil<CR>", { desc = "Open Oil" })
+set("n", "s", require("flash").jump, { desc = "Toggle Flash Search" })
+
+require("smear_cursor").setup()
 
 require("gitsigns").setup()
 

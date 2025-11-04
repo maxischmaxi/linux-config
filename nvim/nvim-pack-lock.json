@@ -109,6 +109,10 @@
       "rev": "36b7597",
       "src": "https://github.com/BurntSushi/ripgrep"
     },
+    "smear-cursor.nvim": {
+      "rev": "abfa583",
+      "src": "https://github.com/sphamba/smear-cursor.nvim"
+    },
     "telescope-fzf-native.nvim": {
       "rev": "1f08ed6",
       "src": "https://github.com/nvim-telescope/telescope-fzf-native.nvim"
