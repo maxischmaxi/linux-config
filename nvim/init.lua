@@ -540,11 +540,7 @@ blink_cmp.setup({
 		["<Down>"] = { "select_next", "fallback" },
 
 		-- show with a list of providers
-		["<C-space>"] = {
-			function(cmp)
-				cmp.show({ providers = { "snippets" } })
-			end,
-		},
+		["<C-space>"] = { "show", "fallback" },
 		["<CR>"] = { "accept", "fallback" },
 		["<Tab>"] = false,
 	},
@@ -553,10 +549,26 @@ blink_cmp.setup({
 		nerd_font_variant = "mono",
 	},
 
-	completion = { documentation = { auto_show = false } },
+	completion = {
+		documentation = { auto_show = false },
+		menu = {
+			draw = {
+				treesitter = { "lsp" },
+			},
+		},
+		trigger = {
+			show_on_insert_on_trigger_character = true,
+		},
+	},
 
 	sources = {
 		default = { "lsp", "path", "snippets", "buffer" },
+		min_keyword_length = 0,
+		providers = {
+			lsp = {
+				min_keyword_length = 0,
+			},
+		},
 	},
 	
 	fuzzy = { implementation = "prefer_rust_with_warning" },
