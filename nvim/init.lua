@@ -43,7 +43,6 @@ vim.pack.add({
 	"https://github.com/rhysd/conflict-marker.vim",
 	"https://github.com/folke/flash.nvim",
 	"https://github.com/windwp/nvim-autopairs",
-	"https://github.com/windwp/nvim-ts-autotag",
 	"https://github.com/stevearc/dressing.nvim",
 	"https://github.com/nvim-pack/nvim-spectre",
 	"https://github.com/stevearc/conform.nvim",
@@ -63,8 +62,6 @@ vim.pack.add({
 
 local hooks = function(ev)
 	local name, kind = ev.data.spec.name, ev.data.kind
-
-	print(name)
 
 	if name == "telescope-fzf-native.nvim" and (kind == "install" or kind == "update") then
 		vim.system({ "make" }, { cwd = ev.data.path })
@@ -131,13 +128,13 @@ set("n", "<leader>dn", function()
 			max = vim.diagnostic.severity.ERROR,
 		},
 	})
-end)
+end, { desc = "Next diagnostic" })
 set("n", "<leader>dp", function()
 	vim.diagnostic.jump({
 		count = -1,
 		severity = vim.diagnostic.severity.ERROR,
 	})
-end)
+end, { desc = "Previous diagnostic" })
 set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
@@ -159,7 +156,6 @@ set("n", "∆", "<cmd>cprev<CR>zz", { desc = "Go to previous quickfix item" })
 set("n", "<leader>+", ':exe "vertical resize " . (winwidth(0) * 4/1)<CR>', { silent = true })
 set("n", "<leader>-", ':exe "vertical resize " . (winwidth(0) * 1/4)<CR>', { silent = true })
 set("n", "<C-b>", "<CMD>Oil<CR>", { desc = "Open Oil" })
-set("n", "s", require("flash").jump, { desc = "Toggle Flash Search" })
 
 require("gitsigns").setup()
 
@@ -168,49 +164,23 @@ require("nvim-highlight-colors").setup()
 require("lualine").setup()
 
 require("flash").setup({
-	keys = {
-		{
-			"s",
-			mode = { "n", "x", "o" },
-			function()
-				require("flash").jump()
-			end,
-			desc = "Flash",
+	modes = {
+		search = {
+			enabled = true,
 		},
-		{
-			"S",
-			mode = { "n", "x", "o" },
-			function()
-				require("flash").treesitter()
-			end,
-			desc = "Flash Treesitter",
-		},
-		{
-			"r",
-			mode = "o",
-			function()
-				require("flash").remote()
-			end,
-			desc = "Remote Flash",
-		},
-		{
-			"R",
-			mode = { "o", "x" },
-			function()
-				require("flash").treesitter_search()
-			end,
-			desc = "Treesitter Search",
-		},
-		{
-			"<c-s>",
-			mode = { "c" },
-			function()
-				require("flash").toggle()
-			end,
-			desc = "Toggle Flash Search",
+		char = {
+			enabled = true,
 		},
 	},
 })
+
+set("n", "s", function()
+	require("flash").jump()
+end, { desc = "Flash Jump" })
+
+set({ "n", "x", "o" }, "S", function()
+	require("flash").treesitter()
+end, { desc = "Flash Treesitter" })
 
 require("lazydev").setup({
 	library = {
@@ -275,59 +245,79 @@ require("spectre").setup({
 
 set("n", "<leader>sw", '<cmd>lua require("spectre").toggle()<CR>')
 
+-- require("nvim-eslint").setup({
+-- 	bin = "eslint_d",
+-- 	code_actions = {
+-- 		enable = true,
+-- 		apply_on_save = {
+-- 			enable = true,
+-- 			types = { "directive", "problem", "suggestion", "layout" },
+-- 		},
+-- 		disable_rule_comment = {
+-- 			enable = true,
+-- 			location = "separate_line",
+-- 		},
+-- 	},
+-- 	diagnostics = {
+-- 		enable = true,
+-- 		report_unused_disable_directives = false,
+-- 		run_on = "type",
+-- 	},
+-- })
+
 require("conform").setup({
 	formatters_by_ft = {
 		lua = { "stylua" },
-		javascript = { "prettierd", "prettier", "eslint_d" },
-		typescript = { "prettierd", "prettier", "eslint_d" },
-		javascriptreact = { "prettierd", "prettier", "eslint_d" },
-		typescriptreact = { "prettierd", "prettier", "eslint_d" },
+		javascript = { "prettierd", "prettier", stop_after_first = true },
+		typescript = { "prettierd", "prettier", stop_after_first = true },
+		javascriptreact = { "prettierd", "prettier", stop_after_first = true },
+		typescriptreact = { "prettierd", "prettier", stop_after_first = true },
 		json = { "prettierd", "prettier", stop_after_first = true },
 		jsonc = { "prettierd", "prettier", stop_after_first = true },
 		html = { "prettierd", "prettier", stop_after_first = true },
 		css = { "prettierd", "prettier", stop_after_first = true },
 		markdown = { "prettierd", "prettier", stop_after_first = true },
 	},
-	format_on_save = {
-		timeout_ms = 500,
-		lsp_format = "fallback",
-	},
+	format_on_save = function(bufnr)
+		return {
+			timeout_ms = 2000,
+			lsp_format = "fallback",
+		}
+	end,
 })
 
-vim.defer_fn(function()
-	require("nvim-treesitter.configs").setup({
-		ensure_installed = {
-			"c",
-			"cpp",
-			"go",
-			"lua",
-			"python",
-			"rust",
-			"tsx",
-			"javascript",
-			"typescript",
-			"vimdoc",
-			"vim",
-			"bash",
-			"css",
-			"gleam",
+require("nvim-treesitter.configs").setup({
+	ensure_installed = {
+		"c",
+		"cpp",
+		"go",
+		"lua",
+		"python",
+		"rust",
+		"tsx",
+		"javascript",
+		"typescript",
+		"vimdoc",
+		"vim",
+		"bash",
+		"css",
+		"gleam",
+	},
+	sync_install = false,
+	ignore_install = {},
+	auto_install = true,
+	highlight = { enable = true },
+	indent = { enable = true },
+	incremental_selection = {
+		enable = true,
+		keymaps = {
+			init_selection = "<c-space>",
+			node_incremental = "<c-space>",
+			scope_incremental = "<c-s>",
+			node_decremental = "<M-space>",
 		},
-		sync_install = false,
-		ignore_install = {},
-		auto_install = true,
-		highlight = { enable = true },
-		indent = { enable = true },
-		incremental_selection = {
-			enable = true,
-			keymaps = {
-				init_selection = "<c-space>",
-				node_incremental = "<c-space>",
-				scope_incremental = "<c-s>",
-				node_decremental = "<M-space>",
-			},
-		},
-	})
-end, 0)
+	},
+})
 
 require("oil").setup({
 	default_file_explorer = true,
@@ -410,30 +400,11 @@ require("telescope").setup({
 			end,
 		},
 		layout_config = { width = 0.9, height = 0.9 },
-		ripgrep_arguments = {
-			"--hidden",
-			"--no-ignore",
-			"--follow",
-			"--column",
-			"--line-number",
-			"--color=always",
-			"--smart-case",
-		},
 		file_ignore_patterns = {
-			"kickstart.txt",
-			"stockfish.js",
-			"stockfish.wasm",
+			"node_modules/",
+			"%.git/",
 			"%.tsbuildinfo$",
-			"stockfish.wasm.map",
-			"./node%_modules/*",
-			"node%_modules",
-			"^node%_modules/*",
-			"node%_modules/*",
-			"**/%_%_image%-snapshots%_%_/**/*",
-			"^%_%_image%-snapshots%_%_",
-			"^%_%_image%-snapshots%_%_/*",
-			"^./.git/",
-			"./.git/",
+			"__image%-snapshots__/",
 			"%.o$",
 			"%.a$",
 			"%.out$",
@@ -458,11 +429,6 @@ require("telescope").setup({
 				"rg",
 				"--files",
 				"--hidden",
-				"--no-heading",
-				"--with-filename",
-				"--line-number",
-				"--smart-case",
-				"--color=never",
 				"--glob",
 				"!**/.git/*",
 			},
@@ -562,15 +528,6 @@ vim.diagnostic.config({
 	virtual_text = {
 		source = "if_many",
 		spacing = 2,
-		format = function(diagnostic)
-			local diagnostic_message = {
-				[vim.diagnostic.severity.ERROR] = diagnostic.message,
-				[vim.diagnostic.severity.WARN] = diagnostic.message,
-				[vim.diagnostic.severity.INFO] = diagnostic.message,
-				[vim.diagnostic.severity.HINT] = diagnostic.message,
-			}
-			return diagnostic_message[diagnostic.severity]
-		end,
 	},
 })
 
@@ -623,11 +580,32 @@ local servers = {
 			},
 		},
 	},
+	cssls = {},
+	css_variables = {},
+	cssmodules_ls = {},
+	eslint = {
+		on_attach = function(client, bufnr)
+			vim.api.nvim_create_autocmd("BufWritePre", {
+				buffer = bufnr,
+				command = "EslintFixAll",
+			})
+		end,
+	},
+	jqls = {},
+	tailwindcss = {},
+	ts_ls = {},
 }
 
 local ensure_installed = vim.tbl_keys(servers or {})
 vim.list_extend(ensure_installed, {
-	"stylua", -- Used to format Lua code
+	-- Formatters and linters
+	"stylua",
+	"prettier",
+	"prettierd",
+	"eslint_d",
+	"stylelint",
+	"jsonlint",
+	"jq",
 })
 require("mason").setup()
 require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
