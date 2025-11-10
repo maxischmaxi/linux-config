@@ -47,7 +47,6 @@ vim.pack.add({
 	"https://github.com/stevearc/dressing.nvim",
 	"https://github.com/nvim-pack/nvim-spectre",
 	"https://github.com/stevearc/conform.nvim",
-	-- "https://github.com/projekt0n/github-nvim-theme",
 	"https://github.com/folke/tokyonight.nvim",
 	"https://github.com/neovim/nvim-lspconfig",
 	"https://github.com/mason-org/mason.nvim",
@@ -60,7 +59,6 @@ vim.pack.add({
 	"https://github.com/nvim-tree/nvim-web-devicons",
 	"https://github.com/nvim-lualine/lualine.nvim",
 	"https://github.com/lewis6991/gitsigns.nvim",
-	"https://github.com/sphamba/smear-cursor.nvim",
 })
 
 local hooks = function(ev)
@@ -162,8 +160,6 @@ set("n", "<leader>+", ':exe "vertical resize " . (winwidth(0) * 4/1)<CR>', { sil
 set("n", "<leader>-", ':exe "vertical resize " . (winwidth(0) * 1/4)<CR>', { silent = true })
 set("n", "<C-b>", "<CMD>Oil<CR>", { desc = "Open Oil" })
 set("n", "s", require("flash").jump, { desc = "Toggle Flash Search" })
-
-require("smear_cursor").setup()
 
 require("gitsigns").setup()
 
@@ -287,6 +283,7 @@ require("conform").setup({
 		javascriptreact = { "prettierd", "prettier", "eslint_d" },
 		typescriptreact = { "prettierd", "prettier", "eslint_d" },
 		json = { "prettierd", "prettier", stop_after_first = true },
+		jsonc = { "prettierd", "prettier", stop_after_first = true },
 		html = { "prettierd", "prettier", stop_after_first = true },
 		css = { "prettierd", "prettier", stop_after_first = true },
 		markdown = { "prettierd", "prettier", stop_after_first = true },

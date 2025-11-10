@@ -1,10 +1,12 @@
 configuration {
-	modi:				"drun";
-	font:				"HarmonyOS Sans SC bold 12";
-	show-icons:                     true;
+	modi:				    "drun,run";
+    sorting-method:         "fzf";
+    fuzzy:                  true;
+	font:				    "HarmonyOS Sans SC bold 12";
+	show-icons:             true;
 	icon-theme: 			"Reversal-dark";
 	display-drun: 			"";
-	drun-display-format:            "{name}";
+	drun-display-format:    "{name}";
 	sidebar-mode: 			false;
 }
 

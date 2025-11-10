@@ -1,0 +1,62 @@
+[2025-11-10 09:56:56.993] [info]  App starting...
+[2025-11-10 09:56:56.995] [info]  [AppUpdater] Update channel set to 'stable'
+[2025-11-10 09:56:57.312] [info]  Hardware survey for general system resources through 'vulkan' took 92.26ms
+[2025-11-10 09:56:57.464] [info]  [AppUpdater] Checking for updates... (current state: idle)
+[2025-11-10 09:56:57.464] [info]  AppUpdater state changed to checking-for-updates-periodic
+[2025-11-10 09:56:57.465] [info]  [AppUpdater] Fetching version info from https://versions-prod.lmstudio.ai/update/linux/x86/0.3.31
+[2025-11-10 09:56:57.905] [info]  [AppUpdater] Received version info response
+[2025-11-10 09:56:57.905] [info]  [AppUpdater] Current version: 0.3.31 (build: 7), new version: 0.3.31 (build: 7)
+[2025-11-10 09:56:57.906] [info]  No update available: 0.3.31 (build: 7) <= 0.3.31 (build: 7)
+[2025-11-10 09:56:57.906] [info]  AppUpdater state changed to idle
+[2025-11-10 09:57:05.436] [error] [97m[amphibianUtils][39m Error getting Python path for amphibian runtime layer: Error: Failed to parse venvstacks for /home/max/.lmstudio/extensions/backends/vendor/_amphibian/.tmp-634067669065: ENOENT: no such file or directory, open '/home/max/.lmstudio/extensions/backends/vendor/_amphibian/.tmp-634067669065/share/venv/metadata/venvstacks_layer.json'
+    at _0xfc80aa (/tmp/.mount_LM-Stuq55zYq/resources/app/.webpack/main/index.js:298:20161)
+    at async _0x2f4ca3 (/tmp/.mount_LM-Stuq55zYq/resources/app/.webpack/main/index.js:298:20484)
+    at async _0x551fe8.<computed> (/tmp/.mount_LM-Stuq55zYq/resources/app/.webpack/main/index.js:298:12744)
+    at async _0x23106a (/tmp/.mount_LM-Stuq55zYq/resources/app/.webpack/main/index.js:298:8981)
+    at async _0x23106a (/tmp/.mount_LM-Stuq55zYq/resources/app/.webpack/main/index.js:298:8915)
+    at async _0x53fda2.indexVendorLibs (/tmp/.mount_LM-Stuq55zYq/resources/app/.webpack/main/index.js:298:9358)
+    at async _0x53fda2.reindexVendorLibs (/tmp/.mount_LM-Stuq55zYq/resources/app/.webpack/main/index.js:298:9700)
+    at async _0x53fda2.performInitialIndex (/tmp/.mount_LM-Stuq55zYq/resources/app/.webpack/main/index.js:298:10403)
+    at async Promise.all (index 0)
+    at async /tmp/.mount_LM-Stuq55zYq/resources/app/.webpack/main/index.js:911:26542
+[2025-11-10 10:03:57.554] [error] (node:15877) [DEP0147] DeprecationWarning: In future versions of Node.js, fs.rmdir(path, { recursive: true }) will be removed. Use fs.rm(path, { recursive: true }) instead
+(Use `lm-studio --trace-deprecation ...` to show where the warning was created)
+[2025-11-10 10:06:01.370] [error] [97m[LMSInternal][Client=plugin:builtin:lmstudio/default-prediction-loop-handler][Endpoint=predict][39m Error in channel handler: Error: received prediction-error
+    at _0x288e80.<computed> (/tmp/.mount_LM-Stuq55zYq/resources/app/.webpack/main/index.js:1097:144567)
+    at _0xac7d23._0x1bb436 (/tmp/.mount_LM-Stuq55zYq/resources/app/.webpack/main/index.js:114:13250)
+    at _0xac7d23.emit (node:events:519:28)
+    at _0xac7d23.onChildMessage (/tmp/.mount_LM-Stuq55zYq/resources/app/.webpack/main/index.js:104:213549)
+    at _0xac7d23.onChildMessage (/tmp/.mount_LM-Stuq55zYq/resources/app/.webpack/main/index.js:119:4173)
+    at _0x4982a0.<anonymous> (/tmp/.mount_LM-Stuq55zYq/resources/app/.webpack/main/index.js:104:212518)
+    at _0x4982a0.emit (node:events:519:28)
+    at ChildProcess.<anonymous> (/tmp/.mount_LM-Stuq55zYq/resources/app/.webpack/main/index.js:613:22415)
+    at ChildProcess.emit (node:events:519:28)
+    at emit (node:internal/child_process:949:14)
+- Caused By: Error: Reached context length of 4096 tokens with model (arch: gpt-oss) that does not currently support mid-generation context overflow. Try reloading with a larger context length or shortening the prompt/chat.
+    at _0xb26549.<computed>.predictTokens (/tmp/.mount_LM-Stuq55zYq/resources/app/.webpack/lib/llmworker.js:85:29892)
+    at async _0x3b1e66.predictTokens (/tmp/.mount_LM-Stuq55zYq/resources/app/.webpack/lib/llmworker.js:113:17659)
+    at async _0x3b1e66.handleMessage (/tmp/.mount_LM-Stuq55zYq/resources/app/.webpack/lib/llmworker.js:113:7067)
+[2025-11-10 10:06:01.372] [error] [97m[LMSInternal][Client=LM Studio][Endpoint=sendMessage][39m Error in RPC handler: Error: Rehydrated error
+t length of 4096 tokens with model (arch: gpt-oss) that does not currently support mid-generation context overflow. Try reloading with a larger context length or shortening the prompt/chat.
+    at _0x288e80.<computed> (/tmp/.mount_LM-Stuq55zYq/resources/app/.webpack/main/index.js:1097:144567)
+    at _0x1790e6.subscriber (/tmp/.mount_LM-Stuq55zYq/resources/app/.webpack/main/index.js:321:1620)
+    at _0x1790e6.notifier (/tmp/.mount_LM-Stuq55zYq/resources/app/.webpack/main/index.js:925:201958)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+- Caused By: Error: Channel Error
+    at <computed> (/tmp/.mount_LM-Stuq55zYq/resources/app/.webpack/main/index.js:426:4964)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+- Caused By: Error: received prediction-error
+    at _0x288e80.<computed> (/tmp/.mount_LM-Stuq55zYq/resources/app/.webpack/main/index.js:1097:144567)
+    at _0xac7d23._0x1bb436 (/tmp/.mount_LM-Stuq55zYq/resources/app/.webpack/main/index.js:114:13250)
+    at _0xac7d23.emit (node:events:519:28)
+    at _0xac7d23.onChildMessage (/tmp/.mount_LM-Stuq55zYq/resources/app/.webpack/main/index.js:104:213549)
+    at _0xac7d23.onChildMessage (/tmp/.mount_LM-Stuq55zYq/resources/app/.webpack/main/index.js:119:4173)
+    at _0x4982a0.<anonymous> (/tmp/.mount_LM-Stuq55zYq/resources/app/.webpack/main/index.js:104:212518)
+    at _0x4982a0.emit (node:events:519:28)
+    at ChildProcess.<anonymous> (/tmp/.mount_LM-Stuq55zYq/resources/app/.webpack/main/index.js:613:22415)
+    at ChildProcess.emit (node:events:519:28)
+    at emit (node:internal/child_process:949:14)
+- Caused By: Error: Reached context length of 4096 tokens with model (arch: gpt-oss) that does not currently support mid-generation context overflow. Try reloading with a larger context length or shortening the prompt/chat.
+    at _0xb26549.<computed>.predictTokens (/tmp/.mount_LM-Stuq55zYq/resources/app/.webpack/lib/llmworker.js:85:29892)
+    at async _0x3b1e66.predictTokens (/tmp/.mount_LM-Stuq55zYq/resources/app/.webpack/lib/llmworker.js:113:17659)
+    at async _0x3b1e66.handleMessage (/tmp/.mount_LM-Stuq55zYq/resources/app/.webpack/lib/llmworker.js:113:7067)

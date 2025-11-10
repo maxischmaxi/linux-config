@@ -21,3 +21,4 @@ key_expand=Tab
 insensitive=false
 no_actions=true
 matching=contains
+fuzzy=true

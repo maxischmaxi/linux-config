@@ -1,0 +1,10 @@
+[Desktop Entry]
+FullScreen=false
+
+[General]
+LockSidebar=true
+ShowSidebar=true
+
+[Recent Files]
+File1[$e]=$HOME/code/game/test.pdf
+Name1[$e]=test.pdf
