@@ -577,44 +577,32 @@ vim.diagnostic.config({
 local blink_cmp = require("blink.cmp")
 
 blink_cmp.setup({
-	{
-		keymap = {
-			preset = "default",
-			["<Up>"] = { "select_prev", "fallback" },
-			["<Down>"] = { "select_next", "fallback" },
+	keymap = {
+		preset = "default",
+		["<Up>"] = { "select_prev", "fallback" },
+		["<Down>"] = { "select_next", "fallback" },
 
-			-- show with a list of providers
-			["<C-space>"] = {
-				function(cmp)
-					cmp.show({ providers = { "snippets" } })
-				end,
-			},
-			["<CR>"] = false,
-			["<Tab>"] = {
-				function(cmp)
-					if cmp.snippet_active() then
-						return cmp.accept()
-					else
-						return cmp.select_and_accept()
-					end
-				end,
-				"snippet_forward",
-				"fallback",
-			},
+		-- show with a list of providers
+		["<C-space>"] = {
+			function(cmp)
+				cmp.show({ providers = { "snippets" } })
+			end,
 		},
-
-		appearance = {
-			nerd_font_variant = "mono",
-		},
-
-		completion = { documentation = { auto_show = false } },
-
-		sources = {
-			default = { "lsp", "path", "snippets", "buffer" },
-		},
-		fuzzy = { implementation = "prefer_rust_with_warning" },
+		["<CR>"] = { "accept", "fallback" },
+		["<Tab>"] = false,
 	},
-	opts_extend = { "sources.default" },
+
+	appearance = {
+		nerd_font_variant = "mono",
+	},
+
+	completion = { documentation = { auto_show = false } },
+
+	sources = {
+		default = { "lsp", "path", "snippets", "buffer" },
+	},
+	
+	fuzzy = { implementation = "prefer_rust_with_warning" },
 })
 
 local capabilities = blink_cmp.get_lsp_capabilities()
