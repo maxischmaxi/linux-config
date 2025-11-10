@@ -128,22 +128,21 @@ local function find_project_root(startpath, cfg_path)
 end
 
 local function apply_indent(buf, opts)
-	if not opts then
-		return
-	end
-	local tw = tonumber(opts.tabWidth)
-	local useTabs = opts.useTabs
-	if tw or useTabs ~= nil then
-		-- Nur lokal für diesen Buffer setzen
-		if useTabs ~= nil then
-			vim.bo[buf].expandtab = not useTabs
-		end
-		if tw then
-			vim.bo[buf].tabstop = tw
-			vim.bo[buf].shiftwidth = tw
-			vim.bo[buf].softtabstop = tw
+	local tw = 4 -- Default auf 4
+	local useTabs = false
+
+	if opts then
+		tw = tonumber(opts.tabWidth) or tw
+		if opts.useTabs ~= nil then
+			useTabs = opts.useTabs
 		end
 	end
+
+	-- Lokal für diesen Buffer setzen
+	vim.bo[buf].expandtab = not useTabs
+	vim.bo[buf].tabstop = tw
+	vim.bo[buf].shiftwidth = tw
+	vim.bo[buf].softtabstop = tw
 end
 
 local function compute_opts_for_buf(buf)
@@ -185,12 +184,27 @@ vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile" }, {
 	end,
 })
 
--- Optional: einmal beim Start auf aktuellem Buffer
+-- Optional: einmal beim Start auf aktuellem Buffer und global setzen
 vim.api.nvim_create_autocmd("VimEnter", {
 	group = group,
 	callback = function()
 		local buf = vim.api.nvim_get_current_buf()
 		local opts = compute_opts_for_buf(buf)
+		
+		-- Wenn eine Prettier-Config im CWD gefunden wurde, global setzen
+		if opts then
+			local tw = tonumber(opts.tabWidth) or 4
+			local useTabs = opts.useTabs
+			if useTabs ~= nil then
+				vim.o.expandtab = not useTabs
+			end
+			if tw then
+				vim.o.tabstop = tw
+				vim.o.shiftwidth = tw
+				vim.o.softtabstop = tw
+			end
+		end
+		
 		apply_indent(buf, opts)
 	end,
 })
