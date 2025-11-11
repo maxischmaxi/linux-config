@@ -36,6 +36,9 @@ if [[ "$(uname -s)" == "Linux" ]]; then
         export GOROOT="/usr/lib/go"
         export PNPM_HOME="$HOME/.local/share/pnpm"
 
+        export JAVA_HOME="/usr/lib/jvm/java-17-openjdk"
+        export INSTALL4J_JAVA_HOME="$JAVA_HOME"
+
         case ":$PATH:" in
                 *":$PNPM_HOME:"*) ;;
                 *) export PATH="$PNPM_HOME:$PATH" ;;
