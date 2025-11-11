@@ -43,7 +43,6 @@ vim.pack.add({
 	"https://github.com/rhysd/conflict-marker.vim",
 	"https://github.com/folke/flash.nvim",
 	"https://github.com/windwp/nvim-autopairs",
-	"https://github.com/stevearc/dressing.nvim",
 	"https://github.com/nvim-pack/nvim-spectre",
 	"https://github.com/stevearc/conform.nvim",
 	"https://github.com/folke/tokyonight.nvim",
@@ -451,6 +450,7 @@ set("n", "<leader>sg", require("telescope.builtin").live_grep, { desc = "[S]earc
 set("n", "gd", require("telescope.builtin").lsp_definitions, { desc = "[G]oto [D]efinition" })
 set("n", "gr", require("telescope.builtin").lsp_references, { desc = "[G]oto [R]eferences" })
 set("n", "gI", require("telescope.builtin").lsp_implementations, { desc = "[G]oto [I]mplementation" })
+set("n", "<leader>rn", vim.lsp.buf.rename, { desc = "[R]e[n]ame" })
 
 vim.api.nvim_create_autocmd("LspAttach", {
 	group = vim.api.nvim_create_augroup("custom-lsp-attach", { clear = true }),
@@ -509,6 +509,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
 					bufnr = event.buf,
 				}))
 			end, "[T]oggle Inlay [H]ints")
+		end
+
+		if client and client_supports_method(client, vim.lsp.protocol.Methods.textDocument_codeAction, event.buf) then
+			map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ctions")
 		end
 	end,
 })
@@ -605,7 +609,7 @@ local servers = {
 	},
 	jqls = {},
 	tailwindcss = {},
-	ts_ls = {},
+	vtsls = {},
 }
 
 local ensure_installed = vim.tbl_keys(servers or {})
