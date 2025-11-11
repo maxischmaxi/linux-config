@@ -1,3 +1,4 @@
 [EmbedSettings]
+embed-application/xml=false
 embed-image/png=false
 embed-video/quicktime=false
