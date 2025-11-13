@@ -50,7 +50,6 @@ vim.pack.add({
 	"https://github.com/mason-org/mason.nvim",
 	"https://github.com/mason-org/mason-lspconfig.nvim",
 	"https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim",
-	"https://github.com/esmuellert/nvim-eslint",
 	"https://github.com/rafamadriz/friendly-snippets",
 	"https://github.com/folke/lazydev.nvim",
 	{ src = "https://github.com/saghen/blink.cmp", version = "v1.7.0" },
@@ -244,45 +243,38 @@ require("spectre").setup({
 
 set("n", "<leader>sw", '<cmd>lua require("spectre").toggle()<CR>')
 
--- require("nvim-eslint").setup({
--- 	bin = "eslint_d",
--- 	code_actions = {
--- 		enable = true,
--- 		apply_on_save = {
--- 			enable = true,
--- 			types = { "directive", "problem", "suggestion", "layout" },
--- 		},
--- 		disable_rule_comment = {
--- 			enable = true,
--- 			location = "separate_line",
--- 		},
--- 	},
--- 	diagnostics = {
--- 		enable = true,
--- 		report_unused_disable_directives = false,
--- 		run_on = "type",
--- 	},
--- })
-
 require("conform").setup({
 	formatters_by_ft = {
 		lua = { "stylua" },
-		javascript = { "prettierd", "prettier", stop_after_first = true },
-		typescript = { "prettierd", "prettier", stop_after_first = true },
-		javascriptreact = { "prettierd", "prettier", stop_after_first = true },
-		typescriptreact = { "prettierd", "prettier", stop_after_first = true },
-		json = { "prettierd", "prettier", stop_after_first = true },
-		jsonc = { "prettierd", "prettier", stop_after_first = true },
-		html = { "prettierd", "prettier", stop_after_first = true },
+		javascript = { "prettierd" },
+		typescript = { "prettierd" },
+		javascriptreact = { "prettierd" },
+		typescriptreact = { "prettierd" },
+		json = { "prettierd" },
+		jsonc = { "prettierd" },
+		html = { "prettierd" },
 		css = { "stylelint", "prettierd" },
-		markdown = { "prettierd", "prettier", stop_after_first = true },
+		markdown = { "prettierd" },
 		rust = { "rustfmt" },
+		["_"] = { "trim_whitespace" },
+		["*"] = { "codespell" },
 	},
-	format_on_save = function(bufnr)
-		return {
-			timeout_ms = 2000,
-			lsp_format = "fallback",
-		}
+	format_on_save = {
+		timeout_ms = 2000,
+		lsp_format = "fallback",
+	},
+})
+
+vim.api.nvim_create_autocmd("BufWritePre", {
+	desc = "Format eslint on save",
+	pattern = { "*.js", "*.ts", "*.jsx", "*.tsx" },
+	group = vim.api.nvim_create_augroup("FormatEslint", { clear = true }),
+	callback = function(ev)
+		vim.lsp.buf.code_action({
+			context = { only = { "source.fixAll.eslint" }, diagnostics = {} },
+			apply = true,
+		})
+		vim.wait(100) -- Give LSP time to apply fixes
 	end,
 })
 
@@ -317,6 +309,7 @@ require("nvim-treesitter.configs").setup({
 			node_decremental = "<M-space>",
 		},
 	},
+	modules = {},
 })
 
 require("oil").setup({
