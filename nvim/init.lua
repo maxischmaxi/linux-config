@@ -274,8 +274,9 @@ require("conform").setup({
 		json = { "prettierd", "prettier", stop_after_first = true },
 		jsonc = { "prettierd", "prettier", stop_after_first = true },
 		html = { "prettierd", "prettier", stop_after_first = true },
-		css = { "prettierd", "prettier", stop_after_first = true },
+		css = { "stylelint", "prettierd" },
 		markdown = { "prettierd", "prettier", stop_after_first = true },
+		rust = { "rustfmt" },
 	},
 	format_on_save = function(bufnr)
 		return {
@@ -574,7 +575,7 @@ blink_cmp.setup({
 			},
 		},
 	},
-	
+
 	fuzzy = { implementation = "prefer_rust_with_warning" },
 })
 
@@ -599,14 +600,8 @@ local servers = {
 	cssls = {},
 	css_variables = {},
 	cssmodules_ls = {},
-	eslint = {
-		on_attach = function(client, bufnr)
-			vim.api.nvim_create_autocmd("BufWritePre", {
-				buffer = bufnr,
-				command = "EslintFixAll",
-			})
-		end,
-	},
+	eslint = {},
+	stylelint_lsp = {},
 	jqls = {},
 	tailwindcss = {},
 	vtsls = {},
