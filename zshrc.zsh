@@ -25,6 +25,7 @@ if [[ "$(uname -s)" == "Linux" ]]; then
         export __GL_VRR_ALLOWED=0
         export WLR_NO_HARDWARE_CURSORS=1
         export XDG_SESSION_TYPE="wayland"
+        export XDG_CURRENT_DESKTOP="Hyprland"
         export LIBVA_DRIVER_NAME="nvidia"
         export __VK_LAYER_NV_optimus="NVIDIA_only"
 
